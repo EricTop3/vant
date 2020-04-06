@@ -10,6 +10,131 @@ Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范。
 - 次版本号：每隔一至二个月发布，包含新特性和较大的功能更新，向下兼容。
 - 主版本号：发布时间不定，包含不兼容更新，预计下一个主版本会与 Vue 3.0 同期发布。
 
+### [v2.6.0-beta.0](https://github.com/youzan/vant/compare/v2.5.9-beta.0...v2.6.0-beta.0)
+
+`2020-04-02`
+
+**Feature**
+
+- Form: 新增 show-error 属性 [#5941](https://github.com/youzan/vant/issues/5941)
+- Tabbar: 新增 placeholder 属性 [#5979](https://github.com/youzan/vant/issues/5979)
+- Sku: 默认开启底部安全区适配 [#5960](https://github.com/youzan/vant/issues/5960)
+- SubmitBar: 默认开启底部安全区适配 [#5956](https://github.com/youzan/vant/issues/5956)
+- GoodsAction: 默认开启底部安全区适配 [#5955](https://github.com/youzan/vant/issues/5955)
+- Tabbar: 固定在底部时默认开启底部安全区适配 [#5968](https://github.com/youzan/vant/issues/5968)
+- Swipe: 允许一次滚动多页轮播 [#5953](https://github.com/youzan/vant/issues/5953)
+
+**Improvement**
+
+- NavBar: 优化点击反馈效果 [#5949](https://github.com/youzan/vant/issues/5949)
+- Popup: 优化退场动画效果 [#5954](https://github.com/youzan/vant/issues/5954)
+- Picker: 优化惯性滑动速率 [#5951](https://github.com/youzan/vant/issues/5951)
+
+**Bug Fixes**
+
+- Button: 修复 icon-prefix 属性不生效的问题 [#5947](https://github.com/youzan/vant/issues/5947)
+- Calendar: 修复 keep-alive 时可能出现渲染空白的问题 [#5978](https://github.com/youzan/vant/issues/5978)
+- Form: 修复动态插入 Field 时校验顺序错误的问题 [b8dea3](https://github.com/youzan/vant/commit/b8dea3c13b7dbf6533169653c493a3156c07f1d4)
+- NavBar: 修复图标在部分机型上不居中的问题 [#5948](https://github.com/youzan/vant/issues/5948)
+- Stepper: 修复 disable-input 属性在低版本 safari 上不生效的问题 [#5976](https://github.com/youzan/vant/issues/5976)
+
+### [v2.5.9](https://github.com/youzan/vant/compare/v2.5.8...v2.5.9)
+
+`2020-03-31`
+
+**Feature**
+
+- AddressEdit: 新增 click-area 事件 [#5939](https://github.com/youzan/vant/issues/5939)
+- NavBar: 新增 placeholder 属性 [#5938](https://github.com/youzan/vant/issues/5938)
+- Steps: 新增 click-step 事件 [#5937](https://github.com/youzan/vant/issues/5937)
+
+**Bug Fixes**
+
+- NumberKeyboard: 修复 show-delete-key 属性不生效的问题 [#5935](https://github.com/youzan/vant/issues/5935)
+- Toast: 修复在部分机型上高度错误的问题 [#5931](https://github.com/youzan/vant/issues/5931)
+- Sticky: 修复 SSR 时访问 window 对象导致报错的问题 [#5958](https://github.com/youzan/vant/issues/5958)
+
+### [v2.5.8](https://github.com/youzan/vant/compare/v2.5.7...v2.5.8)
+
+`2020-03-27`
+
+**Feature**
+
+- 新增 Webstorm 的 web-types.json 定义文件，提供智能提示 [#5900](https://github.com/youzan/vant/issues/5900)
+- Form: 新增 show-error-message 属性 [#5927](https://github.com/youzan/vant/issues/5927)
+- ImagePreview: 开启延迟渲染，提高渲染性能 [#5879](https://github.com/youzan/vant/issues/5879)
+- Swipe: 新增 lazy-render 属性 [365f2b](https://github.com/youzan/vant/commit/365f2b16f7d9592f92413e206439585468a8a1c7)
+
+**Improvement**
+
+- Circle: 优化文字边距 [10f32d](https://github.com/youzan/vant/commit/10f32d6619199e99ff743cb5425db1e54e495fd0)
+- Sidebar: 新增 overflow-y: auto 样式 [#5921](https://github.com/youzan/vant/issues/5921)
+- Swipe: 调整为 flex 布局 [f701de](https://github.com/youzan/vant/commit/f701de9e58db5f88a582e3277c97a0c9ca99eec4)
+
+**Bug Fixes**
+
+- Calendar: 修复 multiple 模式下 default-date 格式错误的问题 [#5907](https://github.com/youzan/vant/issues/5907)
+- PullRefresh: 修复内部元素高度未填满容器的问题 [#5878](https://github.com/youzan/vant/issues/5878)
+- Sticky: 修复切换显示状态时可能出现定位错误的问题 [#5888](https://github.com/youzan/vant/issues/5888)
+- Swipe: 修复屏幕 resize 后可能导致轮播位置错误的问题 [#5922](https://github.com/youzan/vant/issues/5922)
+
+### [v2.5.7](https://github.com/youzan/vant/compare/v2.5.6...v2.5.7)
+
+`2020-03-20`
+
+**Bug Fixes**
+
+- Locale: 修复日语配置文件命名错误的问题 [e8c88a](https://github.com/youzan/vant/commit/e8c88a380217eb48cef8aa7dc29d378a1031120a)
+
+### [v2.5.6](https://github.com/youzan/vant/compare/v2.5.5...v2.5.6)
+
+`2020-03-20`
+
+**Feature**
+
+- Calendar: 新增 allow-same-day 属性 [#5688](https://github.com/youzan/vant/issues/5688)
+- GoodsAction: 新增 badge 属性 [0dea9e](https://github.com/youzan/vant/commit/0dea9e2cb1562decc07ef4467d085247b91924fd)
+- GridItem: 新增 badge 属性 [db94b2](https://github.com/youzan/vant/commit/db94b20c8258ebb31bac99ea1f0c918d62de1059)
+- Icon: 新增 badge 属性 [575577](https://github.com/youzan/vant/commit/575577ed58a1e6daa36ffba7db8054556aa0d24d)
+- ImagePreview: 新增 closed 事件 [5b279a](https://github.com/youzan/vant/commit/5b279ab0dc862c0a3257d18fe17d04ed8dd8c1dd)
+- locale: 新增日语配置文件 [#5853](https://github.com/youzan/vant/issues/5853) [#5854](https://github.com/youzan/vant/issues/5854)
+- SidebarItem: 新增 badge 属性 [01482f](https://github.com/youzan/vant/commit/01482f20bc2150a7e4667fac062b4f129b0ac0c1)
+- Tab: 新增 badge 属性 [214b13](https://github.com/youzan/vant/commit/214b13b8fff411a401fe6ccfc9eb979a51df7461)
+- TabbarItem: 新增 badge 属性 [d61cbd](https://github.com/youzan/vant/commit/d61cbdd086c9050fa467803be676a1eb14d50f16)
+- TreeSelect: 新增 badge 选项 [0cc7a3](https://github.com/youzan/vant/commit/0cc7a305287f43314910f893092c09004cef5349)
+- Uploader: 新增 chooseFile 方法 [#5818](https://github.com/youzan/vant/issues/5818)
+- Uploader: 新增 show-upload 属性 [66c0b3](https://github.com/youzan/vant/commit/66c0b3c1b7d101f242071cf90e5c0b2b899edbdd)
+- Uploader: 支持在 before-read 中返回修改后的文件对象 [#5813](https://github.com/youzan/vant/issues/5813)
+
+**Bug Fixes**
+
+- Calendar: 修复在 Form 内使用时错误触发表单提交的问题 [#5873](https://github.com/youzan/vant/issues/5873)
+- Field: 修复通过插槽使用 Uploader 时上传图片未展示的问题 [#5868](https://github.com/youzan/vant/issues/5868)
+- ImagePreview: 修复上次调用结果未清除的问题 [7fcfc5](https://github.com/youzan/vant/commit/7fcfc5f3270d3507a002247c53a29da211f1ecb6)
+- Picker: 修复 setValues、setIndexes 等方法未触发多列联动更新的问题 [#5807](https://github.com/youzan/vant/issues/5807)
+- Toast: 修复设置 forbidClick 后未锁定滚动的问题 [df8777](https://github.com/youzan/vant/commit/df877751b3497eb6477797ee1a52933067e57676)
+
+### [v2.5.5](https://github.com/youzan/vant/compare/v2.5.4...v2.5.5)
+
+`2020-03-11`
+
+**Feature**
+
+- Calendar: 新增 show-title 属性 [#5779](https://github.com/youzan/vant/issues/5779)
+- Calendar: 新增 show-subtitle 属性 [#5779](https://github.com/youzan/vant/issues/5779)
+- Field: 优化虚拟键盘，type="number" 调起数字键盘 [e89baa](https://github.com/youzan/vant/commit/e89baa12ae24dbd27466bd6ec694074ab99acf5d)
+- Stepper: 优化虚拟键盘，调起数字键盘 [58e74a](https://github.com/youzan/vant/commit/58e74a9e8bfc36f69103c6a301170c5f6ada03dd)
+- GoodsActionIcon: 新增 dot 属性 [b983ac](https://github.com/youzan/vant/commit/b983ac08919056e1095767d1deb3f78e5274b41c)
+
+**Bug Fixes**
+
+- AddressEdit: 修复 showDetail 为 false 时仍然会校验地址的问题 [#5803](https://github.com/youzan/vant/issues/5803)
+- Calendar: 修复在 multiple 模式下 color 属性不生效的问题 [#5786](https://github.com/youzan/vant/issues/5786)
+- Field: 修复 button 插槽可能导致表单校验失败的问题 [#5785](https://github.com/youzan/vant/issues/5785)
+- GoodsActionIcon: 修复使用 icon 插槽时 info 属性不生效的问题 [#5788](https://github.com/youzan/vant/issues/5788)
+- Stepper: 修复在 Form 中使用时必须输入整数的问题 [#5792](https://github.com/youzan/vant/issues/5792)
+- Sticky: 修复 Sticky 切换显隐导致位置错误的问题 [41e5c0](https://github.com/youzan/vant/commit/41e5c035dcf75c1f1d4c04673d3db255e439d452)
+
 ### [v2.5.4](https://github.com/youzan/vant/compare/v2.5.3...v2.5.4)
 
 `2020-03-08`

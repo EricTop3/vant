@@ -62,19 +62,19 @@ export default {
     v-model="value1"
     name="pattern"
     placeholder="USe pattern"
-    :rules="[{ pattern, message: 'Error message }]"
+    :rules="[{ pattern, message: 'Error message' }]"
   />
   <van-field
     v-model="value2"
     name="validator"
     placeholder="Use validator"
-    :rules="[{ validator, message: 'Error message }]"
+    :rules="[{ validator, message: 'Error message' }]"
   />
   <van-field
     v-model="value3"
     name="asyncValidator"
     placeholder="Use async validator"
-    :rules="[{ validator: asyncValidator, message: 'Error message }]"
+    :rules="[{ validator: asyncValidator, message: 'Error message' }]"
   />
   <div style="margin: 16px;">
     <van-button round block type="info" native-type="submit">
@@ -431,7 +431,9 @@ export default {
 | validate-trigger `v2.5.2` | When to validate the form，can be set to `onChange`、`onSubmit` | *string* | `onBlur` |
 | colon | Whether to display `:` after label | *boolean* | `false` |
 | validate-first | Whether to stop the validation when a rule fails | *boolean* | `false` |
-| scroll-to-error `v2.5.2` | Whether to scroll to the error field when submit failed | *boolean* | `false` |
+| scroll-to-error `v2.5.2` | Whether to scroll to the error field when validation failed | *boolean* | `false` |
+| show-error `v2.5.9` | Whether to highlight input when validation failed | *boolean* | `true` |
+| show-error-message `v2.5.8` | Whether to show error message when validation failed | *boolean* | `true` |
 
 ### Data Structure of Rule 
 

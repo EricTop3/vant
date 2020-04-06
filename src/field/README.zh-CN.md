@@ -45,9 +45,9 @@ export default {
 <van-field v-model="text" label="文本" />
 <!-- 输入手机号，调起手机号键盘 -->
 <van-field v-model="tel" type="tel" label="手机号" />
-<!-- 允许输入整数，调起数字键盘 -->
+<!-- 允许输入正整数，调起纯数字键盘 -->
 <van-field v-model="digit" type="digit" label="整数" />
-<!-- 允许输入数字，调起全键盘 -->
+<!-- 允许输入数字，调起带符号的纯数字键盘 -->
 <van-field v-model="number" type="number" label="数字" />
 <!-- 输入密码 -->
 <van-field v-model="password" type="password" label="密码" />
@@ -149,7 +149,9 @@ export default {
   label="短信验证码"
   placeholder="请输入短信验证码"
 >
-  <van-button slot="button" size="small" type="primary">发送验证码</van-button>
+  <template #button>
+    <van-button size="small" type="primary">发送验证码</van-button>
+  </template>
 </van-field>
 ```
 

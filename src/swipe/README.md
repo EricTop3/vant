@@ -120,11 +120,23 @@ export default {
   <van-swipe-item>2</van-swipe-item>
   <van-swipe-item>3</van-swipe-item>
   <van-swipe-item>4</van-swipe-item>
-
-  <div class="custom-indicator" slot="indicator">
-    {{ current + 1 }}/4
-  </div>
+  <template #indicator>
+    <div class="custom-indicator">
+      {{ current + 1 }}/4
+    </div>
+  </template>
 </van-swipe>
+
+<style>
+.custom-indicator {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  padding: 2px 5px;
+  font-size: 12px;
+  background: rgba(0, 0, 0, 0.1);
+}
+</style>
 ```
 
 ```js
@@ -158,6 +170,7 @@ export default {
 | vertical | Whether to be vertical Scrolling | *boolean* | `false` |
 | touchable | Whether to allow swipe by touch gesture | *boolean* | `true` |
 | stop-propagation `v2.1.0` | Whether to stop touchmove event propagation | *boolean* | `false` |
+| lazy-render `v2.5.8` | Whether to enable lazy render | *boolean* | `false` |
 | indicator-color | Indicator color | *string* | `#1989fa` |
 
 ### Swipe Events

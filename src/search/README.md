@@ -102,10 +102,13 @@ Use `action` slot to custom right button, `cancel` event will no longer be trigg
 <van-search
   v-model="value"
   show-action
-  shape="round"
+  label="Address"
+  placeholder="Placeholder"
   @search="onSearch"
 >
-  <div slot="action" @click="onSearch">Search</div>
+  <template #action>
+    <div @click="onSearch">Search</div> 
+  </template>
 </van-search>
 ```
 

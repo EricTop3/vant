@@ -133,9 +133,9 @@ export default {
 </van-uploader>
 ```
 
-### 上传前校验
+### 上传前自定义处理
 
-通过传入`beforeRead`函数可以在上传前进行校验，返回`true`表示校验通过，返回`false`表示校验失败。支持返回`Promise`进行异步校验
+通过传入`beforeRead`函数可以在上传前进行校验，返回`true`表示校验通过，返回`false`表示校验失败。支持返回`Promise`对 file 对象进行自定义处理，例如压缩图片。
 
 ```html
 <van-uploader :before-read="beforeRead" />
@@ -161,7 +161,10 @@ export default {
           Toast('请上传 jpg 格式图片');
           reject();
         } else {
-          resolve();
+          let img = new File(["foo"], "bar.jpg", {
+            type: "image/jpeg",
+          });
+          resolve(img);
         }
       });
     }
@@ -183,6 +186,7 @@ export default {
 | multiple | 是否开启图片多选，部分安卓机型不支持 | *boolean* | `false` |
 | disabled | 是否禁用文件上传 | *boolean* | `false` |
 | deletable `v2.2.12` | 是否展示删除按钮 | *boolean* | `true` |
+| show-upload `v2.5.6` | 是否展示上传区域 | *boolean* | `true` |
 | capture | 图片选取模式，可选值为`camera`(直接调起摄像头) | *string* | - |
 | after-read | 文件读取完成后的回调函数 | *Function* | - |
 | before-read | 文件读取前的回调函数，返回`false`可终止文件读取，<br>支持返回`Promise` | *Function* | - |
@@ -235,3 +239,4 @@ before-read、after-read、before-delete 执行时会传递以下回调参数：
 | 方法名 | 说明 | 参数 | 返回值 |
 |------|------|------|------|
 | closeImagePreview | 关闭全屏的图片预览 | - | - |
+| chooseFile `v2.5.6` | 主动调起文件选择，由于浏览器安全限制，只有在用户触发操作的上下文中调用才有效 | - | - |

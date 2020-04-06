@@ -126,11 +126,23 @@ export default {
   <van-swipe-item>2</van-swipe-item>
   <van-swipe-item>3</van-swipe-item>
   <van-swipe-item>4</van-swipe-item>
-
-  <div class="custom-indicator" slot="indicator">
-    {{ current + 1 }}/4
-  </div>
+  <template #indicator>
+    <div class="custom-indicator">
+      {{ current + 1 }}/4
+    </div>
+  </template>
 </van-swipe>
+
+<style>
+.custom-indicator {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  padding: 2px 5px;
+  font-size: 12px;
+  background: rgba(0, 0, 0, 0.1);
+}
+</style>
 ```
 
 ```js
@@ -164,6 +176,7 @@ export default {
 | vertical | 是否为纵向滚动 | *boolean* | `false` |
 | touchable | 是否可以通过手势滑动 | *boolean* | `true` |
 | stop-propagation `v2.2.13` | 是否阻止滑动事件冒泡 | *boolean* | `true` |
+| lazy-render `v2.5.8` | 是否延迟渲染未展示的轮播 | *boolean* | `false` |
 | indicator-color | 指示器颜色 | *string* | `#1989fa` |
 
 ### Swipe Events

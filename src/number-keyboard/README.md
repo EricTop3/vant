@@ -95,7 +95,7 @@ export default {
 Use `extra-key` prop to set the content of bottom left button
 
 ```html
-<van-button plain type="primary" @touchstart.stop="show = true'">
+<van-button plain type="primary" @touchstart.stop="show = true">
   Show Id Card Number Keyboard
 </van-button>
 
@@ -114,7 +114,7 @@ Use `extra-key` prop to set the content of bottom left button
 Use `title` prop to set keyboard title
 
 ```html
-<van-button plain type="info" @touchstart.stop="show = true'">
+<van-button plain type="info" @touchstart.stop="show = true">
   Show Custom Title Keyboard
 </van-button>
 
@@ -145,7 +145,7 @@ Use `title` prop to set keyboard title
 | extra-key | Content of bottom left key | *string* | `''` |
 | close-button-text | Close button text | *string* | `-` |
 | delete-button-text | Delete button text | *string* | `delete` |
-| show-delete-key | Whether to show delete button | *boolean* | `true` |
+| show-delete-key `v2.5.9` | Whether to show delete button | *boolean* | `true` |
 | hide-on-click-outside | Whether to hide keyboard when click outside | *boolean* | `true` |
 | safe-area-inset-bottom | Whether to enable bottom safe area adaptation | *boolean* | `true` |
 

@@ -36,7 +36,7 @@ export function compareDay(day1: Date, day2: Date) {
   return compareMonthResult;
 }
 
-function getDayByOffset(date: Date, offset: number) {
+export function getDayByOffset(date: Date, offset: number) {
   date = new Date(date);
   date.setDate(date.getDate() + offset);
 
@@ -59,7 +59,7 @@ export function calcDateNum(date: [Date, Date]) {
 
 export function copyDates(dates: Date | Date[]) {
   if (Array.isArray(dates)) {
-    return dates.map(date => {
+    return dates.map((date) => {
       if (date === null) {
         return date;
       }

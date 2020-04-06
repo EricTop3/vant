@@ -71,21 +71,21 @@ export default {
     v-model="value1"
     name="pattern"
     placeholder="正则校验"
-    :rules="[{ pattern, message: '请输入正确内容 }]"
+    :rules="[{ pattern, message: '请输入正确内容' }]"
   />
   <!-- 通过 validator 进行函数校验 -->
   <van-field
     v-model="value2"
     name="validator"
     placeholder="函数校验"
-    :rules="[{ validator, message: '请输入正确内容 }]"
+    :rules="[{ validator, message: '请输入正确内容' }]"
   />
   <!-- 通过 validator 进行异步函数校验 -->
   <van-field
     v-model="value3"
     name="asyncValidator"
     placeholder="异步函数校验"
-    :rules="[{ validator: asyncValidator, message: '请输入正确内容 }]"
+    :rules="[{ validator: asyncValidator, message: '请输入正确内容' }]"
   />
   <div style="margin: 16px;">
     <van-button round block type="info" native-type="submit">
@@ -467,6 +467,8 @@ export default {
 | colon | 是否在 label 后面添加冒号 | *boolean* | `false` |
 | validate-first | 是否在某一项校验不通过时停止校验 | *boolean* | `false` |
 | scroll-to-error `v2.5.2` | 是否在提交表单且校验不通过时滚动至错误的表单项 | *boolean* | `false` |
+| show-error `v2.5.9` | 是否在校验不通过时标红输入框 | *boolean* | `true` |
+| show-error-message `v2.5.8` | 是否在校验不通过时在输入框下方展示错误提示 | *boolean* | `true` |
 
 > 表单项的 API 参见：[Field 组件](#/zh-CN/field#api)
 
@@ -506,3 +508,17 @@ export default {
 | 名称 | 说明 |
 |------|------|
 | default | 表单内容 |
+
+## 常见问题
+
+### 点击表单中的普通按钮为什么会触发表单提交？
+
+在表单中，除了提交按钮外，可能还有一些其他的功能性按钮，如发送验证码按钮。在使用这些按钮时，要注意将`native-type`设置为`button`，否则会触发表单提交。
+
+```html
+<van-button native-type="button">
+  发送验证码
+</van-button>
+```
+
+这个问题的原因是浏览器中 button 标签 type 属性的默认值为`submit`，导致触发表单提交。我们会在下个大版本中将 type 的默认值调整为`button`来避免这个问题。

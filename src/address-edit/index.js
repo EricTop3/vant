@@ -106,7 +106,7 @@ export default createComponent({
         if (province && province === city) {
           arr.splice(1, 1);
         }
-        return arr.filter(text => text).join('/');
+        return arr.filter((text) => text).join('/');
       }
       return '';
     },
@@ -144,9 +144,9 @@ export default createComponent({
     },
 
     onAreaConfirm(values) {
-      values = values.filter(value => !!value);
+      values = values.filter((value) => !!value);
 
-      if (values.some(value => !value.code)) {
+      if (values.some((value) => !value.code)) {
         Toast(t('areaEmpty'));
         return;
       }
@@ -168,13 +168,21 @@ export default createComponent({
     },
 
     onSave() {
-      const items = ['name', 'tel', 'areaCode', 'addressDetail'];
+      const items = ['name', 'tel'];
+
+      if (this.showArea) {
+        items.push('areaCode');
+      }
+
+      if (this.showDetail) {
+        items.push('addressDetail');
+      }
 
       if (this.showPostal) {
         items.push('postalCode');
       }
 
-      const isValid = items.every(item => {
+      const isValid = items.every((item) => {
         const msg = this.getErrorMessage(item);
         if (msg) {
           this.errorInfo[item] = msg;
@@ -252,7 +260,7 @@ export default createComponent({
 
   render() {
     const { data, errorInfo, searchResult, disableArea } = this;
-    const onFocus = name => () => this.onFocus(name);
+    const onFocus = (name) => () => this.onFocus(name);
 
     // hide bottom field when use search && detail get focused
     const hideBottomFields =
@@ -289,6 +297,7 @@ export default createComponent({
             value={this.areaText}
             onFocus={onFocus('areaCode')}
             onClick={() => {
+              this.$emit('click-area');
               this.showAreaPopup = !disableArea;
             }}
           />
@@ -304,7 +313,7 @@ export default createComponent({
             onFocus={onFocus('addressDetail')}
             onBlur={this.onDetailBlur}
             onInput={this.onChangeDetail}
-            onSelect-search={event => {
+            onSelect-search={(event) => {
               this.$emit('select-search', event);
             }}
           />
@@ -328,7 +337,7 @@ export default createComponent({
             vModel={data.isDefault}
             vShow={!hideBottomFields}
             title={t('defaultAddress')}
-            onChange={event => {
+            onChange={(event) => {
               this.$emit('change-default', event);
             }}
           />

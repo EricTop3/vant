@@ -142,10 +142,10 @@ Use title slot to custom tab title
 
 ```html
 <van-tabs v-model="active">
-  <van-tab v-for="index in 2">
-    <div slot="title">
+  <van-tab v-for="index in 2" :key="index">
+    <template #title>
       <van-icon name="more-o" />tab
-    </div>
+    </template>
     content {{ index }}
   </van-tab>
 </van-tabs>
@@ -219,7 +219,7 @@ In scrollspy mode, the list of content will be tiled
 | title | Title | *string* | - |
 | disabled | Whether to disable tab | *boolean* | `false` |
 | dot `v2.3.0` | Whether to show red dot on the title | *boolean* | `false` |
-| info `v2.3.0` | Content of the badge on the title | *number \| string* | - |
+| badge `v2.5.6` | Content of the badge on the title | *number \| string* | - |
 | name `v2.0.6` | Identifier | *number \| string* | Index of tab |
 | url `v2.2.1` | Link | *string* | - |
 | to `v2.2.1` | Target route of the link, same as to of vue-router | *string \| object* | - |

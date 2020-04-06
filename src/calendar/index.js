@@ -7,10 +7,11 @@ import {
   copyDates,
   getNextDay,
   compareDay,
+  ROW_HEIGHT,
+  calcDateNum,
   compareMonth,
   createComponent,
-  calcDateNum,
-  ROW_HEIGHT,
+  getDayByOffset,
 } from './utils';
 
 // Components
@@ -30,6 +31,7 @@ export default createComponent({
     rangePrompt: String,
     defaultDate: [Date, Array],
     getContainer: [String, Function],
+    allowSameDay: Boolean,
     closeOnPopstate: Boolean,
     confirmDisabledText: String,
     type: {
@@ -69,7 +71,15 @@ export default createComponent({
       type: Boolean,
       default: true,
     },
+    showTitle: {
+      type: Boolean,
+      default: true,
+    },
     showConfirm: {
+      type: Boolean,
+      default: true,
+    },
+    showSubtitle: {
       type: Boolean,
       default: true,
     },
@@ -89,7 +99,7 @@ export default createComponent({
 
   data() {
     return {
-      monthTitle: '',
+      subtitle: '',
       currentDate: this.getInitialDate(),
     };
   },
@@ -126,13 +136,7 @@ export default createComponent({
 
   watch: {
     type: 'reset',
-
-    value(val) {
-      if (val) {
-        this.initRect();
-        this.scrollIntoView();
-      }
-    },
+    value: 'init',
 
     defaultDate(val) {
       this.currentDate = val;
@@ -141,10 +145,11 @@ export default createComponent({
   },
 
   mounted() {
-    if (this.value || !this.poppable) {
-      this.initRect();
-      this.scrollIntoView();
-    }
+    this.init();
+  },
+
+  activated() {
+    this.init();
   },
 
   methods: {
@@ -154,7 +159,11 @@ export default createComponent({
       this.scrollIntoView();
     },
 
-    initRect() {
+    init() {
+      if (this.poppable && !this.value) {
+        return;
+      }
+
       this.$nextTick(() => {
         // add Math.floor to avoid decimal height issues
         // https://github.com/youzan/vant/issues/5640
@@ -163,6 +172,7 @@ export default createComponent({
         );
         this.onScroll();
       });
+      this.scrollIntoView();
     },
 
     // scroll to current month
@@ -198,7 +208,7 @@ export default createComponent({
       }
 
       if (type === 'multiple') {
-        return [defaultDate || minDate];
+        return defaultDate || [minDate];
       }
 
       return defaultDate || minDate;
@@ -210,7 +220,7 @@ export default createComponent({
       const { body, months } = this.$refs;
       const top = getScrollTop(body);
       const bottom = top + this.bodyHeight;
-      const heights = months.map(item => item.height);
+      const heights = months.map((item) => item.height);
       const heightSum = heights.reduce((a, b) => a + b, 0);
 
       // iOS scroll bounce may exceed the range
@@ -235,7 +245,7 @@ export default createComponent({
 
       /* istanbul ignore else */
       if (currentMonth) {
-        this.monthTitle = currentMonth.title;
+        this.subtitle = currentMonth.title;
       }
     },
 
@@ -253,6 +263,8 @@ export default createComponent({
             this.select([startDay, date], true);
           } else if (compareToStart === -1) {
             this.select([date, null]);
+          } else if (this.allowSameDay) {
+            this.select([date, date]);
           }
         } else {
           this.select([date, null]);
@@ -283,26 +295,36 @@ export default createComponent({
     },
 
     select(date, complete) {
-      this.currentDate = date;
-      this.$emit('select', copyDates(this.currentDate));
+      const emit = (date) => {
+        this.currentDate = date;
+        this.$emit('select', copyDates(this.currentDate));
+      };
 
       if (complete && this.type === 'range') {
-        const valid = this.checkRange();
+        const valid = this.checkRange(date);
 
         if (!valid) {
+          // auto selected to max range if showConfirm
+          if (this.showConfirm) {
+            emit([date[0], getDayByOffset(date[0], this.maxRange - 1)]);
+          } else {
+            emit(date);
+          }
           return;
         }
       }
+
+      emit(date);
 
       if (complete && !this.showConfirm) {
         this.onConfirm();
       }
     },
 
-    checkRange() {
-      const { maxRange, currentDate, rangePrompt } = this;
+    checkRange(date) {
+      const { maxRange, rangePrompt } = this;
 
-      if (maxRange && calcDateNum(currentDate) > maxRange) {
+      if (maxRange && calcDateNum(date) > maxRange) {
         Toast(rangePrompt || t('rangePrompt', maxRange));
         return false;
       }
@@ -311,14 +333,11 @@ export default createComponent({
     },
 
     onConfirm() {
-      if (this.type === 'range' && !this.checkRange()) {
-        return;
-      }
-
       this.$emit('confirm', copyDates(this.currentDate));
     },
 
     genMonth(date, index) {
+      const showMonthTitle = index !== 0 || !this.showSubtitle;
       return (
         <Month
           ref="months"
@@ -331,8 +350,10 @@ export default createComponent({
           showMark={this.showMark}
           formatter={this.formatter}
           rowHeight={this.rowHeight}
-          showTitle={index !== 0}
           currentDate={this.currentDate}
+          showSubtitle={this.showSubtitle}
+          allowSameDay={this.allowSameDay}
+          showMonthTitle={showMonthTitle}
           onClick={this.onClickDay}
         />
       );
@@ -358,7 +379,7 @@ export default createComponent({
             color={this.color}
             class={bem('confirm')}
             disabled={this.buttonDisabled}
-            nativeType="text"
+            nativeType="button"
             onClick={this.onConfirm}
           >
             {text || t('confirm')}
@@ -369,11 +390,7 @@ export default createComponent({
 
     genFooter() {
       return (
-        <div
-          class={bem('footer', {
-            'safe-area-inset-bottom': this.safeAreaInsetBottom,
-          })}
-        >
+        <div class={bem('footer', { unfit: !this.safeAreaInsetBottom })}>
           {this.genFooterContent()}
         </div>
       );
@@ -384,7 +401,9 @@ export default createComponent({
         <div class={bem()}>
           <Header
             title={this.title}
-            monthTitle={this.monthTitle}
+            showTitle={this.showTitle}
+            subtitle={this.subtitle}
+            showSubtitle={this.showSubtitle}
             scopedSlots={{
               title: () => this.slots('title'),
             }}
@@ -400,16 +419,16 @@ export default createComponent({
 
   render() {
     if (this.poppable) {
-      const createListener = name => () => this.$emit(name);
+      const createListener = (name) => () => this.$emit(name);
 
       return (
         <Popup
           round
-          closeable
           class={bem('popup')}
           value={this.value}
           round={this.round}
           position={this.position}
+          closeable={this.showTitle || this.showSubtitle}
           getContainer={this.getContainer}
           closeOnPopstate={this.closeOnPopstate}
           closeOnClickOverlay={this.closeOnClickOverlay}

@@ -70,34 +70,22 @@ yarn add @vant/cli --dev
 
 ## 命令
 
-### dev
-
-本地开发，dev 命令会启动一个本地服务器，用于在开发过程中对文档和示例进行预览
-
-### build
-
-构建组件库，在`es`和`lib`目录生成可用于生产环境的组件代码
-
-### build-site
-
-构建文档站点，在`site`目录生成可用于生产环境的文档站点代码
-
-### release
-
-发布组件库，发布前会自动执行 build 和 changelog 命令
-
-### changelog
-
-基于 commit 记录生成更新日志
-
-### commit-lint
-
-校验 commit message 的格式是否符合规范，需要配合`husky`在提交 commit 时触发
+参见[命令](https://github.com/youzan/vant/tree/dev/packages/vant-cli/docs/commands.md)。
 
 ## 配置
 
 参见[配置指南](https://github.com/youzan/vant/tree/dev/packages/vant-cli/docs/config.md)。
 
+## 目录结构
+
+参见[目录结构](https://github.com/youzan/vant/tree/dev/packages/vant-cli/docs/directory.md)。
+
 ## 更新日志
 
 参见[更新日志](https://github.com/youzan/vant/tree/dev/packages/vant-cli/changelog.md)。
+
+## 微信讨论群
+
+扫码加入 Vant Cli 交流群，若群二维码过期，可以联系有赞前端小秘书加群
+
+<img src="https://img.yzcdn.cn/vant/wechat_20200403.jpeg" width="220" height="285" >

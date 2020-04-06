@@ -102,10 +102,13 @@ export default {
 <van-search
   v-model="value"
   show-action
+  label="地址"
   placeholder="请输入搜索关键词"
   @search="onSearch"
 >
-  <div slot="action" @click="onSearch">搜索</div>
+  <template #action>
+    <div @click="onSearch">搜索</div>
+  </template>
 </van-search>
 ```
 

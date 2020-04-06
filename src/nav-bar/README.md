@@ -39,11 +39,13 @@ export default {
 }
 ```
 
-### Advanced Usage
+### Use Slot
 
 ```html
 <van-nav-bar title="Title" left-text="Back" left-arrow>
-  <van-icon name="search" slot="right" />
+  <template #right>
+    <van-icon name="search"/> 
+  </template>
 </van-nav-bar>
 ```
 
@@ -57,8 +59,9 @@ export default {
 | left-text | Left Text | *string* | `''` |
 | right-text | Right Text | *string* | `''` |
 | left-arrow | Whether to show left arrow | *boolean* | `false` |
-| fixed | Whether to fixed top | *boolean* | `false` |
 | border | Whether to show bottom border | *boolean* | `true` |
+| fixed | Whether to fixed top | *boolean* | `false` |
+| placeholder `v2.5.9` | Whether to generage a placeholder element when fixed | *boolean* | `false` |
 | z-index | Z-index | *number \| string* | `1` |
 
 ### Slots

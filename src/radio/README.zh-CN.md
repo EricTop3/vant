@@ -57,7 +57,7 @@ export default {
 
 ### 自定义形状
 
-通过`square`属性设置选中状态的图标颜色
+将`shape`属性设置为`square`，单选框的形状会变成方形
 
 ```html
 <van-radio-group v-model="radio">
@@ -96,29 +96,39 @@ export default {
 <van-radio-group v-model="radio">
   <van-radio name="1">
     单选框 1
-    <img
-      slot="icon"
-      slot-scope="props"
-      :src="props.checked ? activeIcon : inactiveIcon"
-    >
+    <template #icon="props">
+      <img
+        class="img-icon"
+        :src="props.checked ? activeIcon : inactiveIcon"
+      >
+    </template>
   </van-radio>
   <van-radio name="2">
     单选框 2
-    <img
-      slot="icon"
-      slot-scope="props"
-      :src="props.checked ? activeIcon : inactiveIcon"
-    >
+    <template #icon="props">
+      <img
+        class="img-icon"
+        :src="props.checked ? activeIcon : inactiveIcon"
+      />
+    </template>
   </van-radio>
 </van-radio-group>
+
+<style>
+  .img-icon {
+    height: 20px;  
+}
+</style>
 ```
 
 ```js
 export default {
   data() {
-    radio: '1',
-    activeIcon: 'https://img.yzcdn.cn/vant/user-active.png',
-    inactiveIcon: 'https://img.yzcdn.cn/vant/user-inactive.png'
+    return {
+     radio: '1',
+     activeIcon: 'https://img.yzcdn.cn/vant/user-active.png',
+     inactiveIcon: 'https://img.yzcdn.cn/vant/user-inactive.png'
+    }
   }
 }
 ```
@@ -142,10 +152,14 @@ export default {
 <van-radio-group v-model="radio">
   <van-cell-group>
     <van-cell title="单选框 1" clickable @click="radio = '1'">
-      <van-radio slot="right-icon" name="1" />
+      <template #right-icon>      
+        <van-radio name="1" />
+      </template>
     </van-cell>
     <van-cell title="单选框 2" clickable @click="radio = '2'">
-      <van-radio slot="right-icon" name="2" />
+      <template #right-icon>
+        <van-radio name="2" />
+      </template>
     </van-cell>
   </van-cell-group>
 </van-radio-group>

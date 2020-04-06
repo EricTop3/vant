@@ -140,7 +140,10 @@ export default {
           Toast('Please upload an image in jpg format');
           reject();
         } else {
-          resolve();
+          let img = new File(["foo"], "bar.jpg", {
+            type: "image/jpeg",
+          });
+          resolve(img);
         }
       });
     }
@@ -162,6 +165,7 @@ export default {
 | multiple | Whether to enable multiple selection pictures | *boolean* | `false` |
 | disabled | Whether to disabled the upload | *boolean* | `false` |
 | deletable `v2.2.12` | Whether to show delete icon | *boolean* | `true` |
+| show-upload `v2.5.6` | Whether to show upload area | *boolean* | `true` |
 | capture | Capture，can be set to `camera` | *string* | - |
 | after-read | Hook after reading the file | *Function* | - |
 | before-read | Hook before reading the file, return false to stop reading the file, can return Promise | *Function* | - |
@@ -210,3 +214,4 @@ Use [ref](https://vuejs.org/v2/api/#ref) to get Uploader instance and call insta
 | Name | Description | Attribute | Return value |
 |------|------|------|------|
 | closeImagePreview | Close full screen image preview | - | - |
+| chooseFile `v2.5.6` | Trigger choosing files, works with the user action context only because of browser security | - | - |
